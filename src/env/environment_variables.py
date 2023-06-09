@@ -9,6 +9,6 @@ class EnvironmentVariables():
         self.normalization_file_path = os.getenv("NORMALIZATION_FILE_PATH", None)
         self.port = os.getenv("PORT", 7000)
         self.host = os.getenv("HOST", "0.0.0.0")
-        self.logfile = 'log.txt'
+        self.logfile = os.getenv("LOGFILE", "log.txt")
 
 APPCONFIG = EnvironmentVariables()

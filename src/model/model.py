@@ -24,6 +24,8 @@ class HumanActivityPredictor(PreProcesser):
         cj_logger.info("Loaded model successfully")
 
     def predict(self, input_df):
+        print("input_df : ",input_df)
+        print(input_df.columns)
         timestamp_df = input_df[['timestamp']]
         features_df = input_df[self.features]
 
