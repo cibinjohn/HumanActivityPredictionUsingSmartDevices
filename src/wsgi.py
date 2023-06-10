@@ -3,7 +3,7 @@ from flask import Flask, request
 from flask_restful import Api, Resource
 
 from env.environment_variables import APPCONFIG
-from src.model.model import HumanActivityPredictor
+from model.model import HumanActivityPredictor
 
 app = Flask(__name__)
 api = Api(app)

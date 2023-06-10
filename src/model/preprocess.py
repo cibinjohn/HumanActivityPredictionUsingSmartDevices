@@ -1,7 +1,7 @@
 import pickle
 
-from src.env.environment_variables import APPCONFIG
-from src.log.cj_logger import cj_logger
+from env.environment_variables import APPCONFIG
+from log.cj_logger import cj_logger
 
 
 class PreProcesser():

@@ -2,10 +2,10 @@ import pickle
 
 import pandas as pd
 
-from src.env.environment_variables import APPCONFIG
-from src.log.cj_logger import cj_logger
-from src.model.constants import FEATURES, LABEL_DICT
-from src.model.preprocess import PreProcesser
+from env.environment_variables import APPCONFIG
+from log.cj_logger import cj_logger
+from model.constants import FEATURES, LABEL_DICT
+from model.preprocess import PreProcesser
 
 
 class HumanActivityPredictor(PreProcesser):
