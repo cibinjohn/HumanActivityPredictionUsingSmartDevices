@@ -31,3 +31,7 @@ LABEL_DICT = {'Walk': 0,
               'Video games': 26,
               'Shopping& wearing': 27,
               'Eat/In computer': 28}
+
+STATUS_MESSAGE_DICT = {0:"In progress",
+                       1:"Completed",
+                       2:"Failed"}
