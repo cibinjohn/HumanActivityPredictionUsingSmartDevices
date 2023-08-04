@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale =1"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href='/static/css/home.css' />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+	$(function() {
+		$( ".dtpick" ).datepicker();
+	});
+	</script>
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+
+<p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+</p>
+<form method="post" action="{{ url_for('upload') }}" enctype="multipart/form-data">
+<!--    <div class="heading"><h3 align="center">Predict Activity</h3></div>-->
+    <h4>Select file to upload</h4>
+    <br>
+    <div class="first-upload-btn">
+
+<!--        <dl>-->
+<!--            <p>-->
+                <input type="file" name="file" autocomplete="off" required>
+<!--            </p>-->
+<!--        </dl>-->
+<!--        <p>-->
+            <input type="submit" value="Submit">
+<!--        </p>-->
+    </div>
+ <div class="second-time-btns">
+        <div><button type="submit" class="btn btn-primary">Choose Timestamp</button></div>
+        <div><button type="submit" class="btn btn-primary">Choose Time Interval</button></div>
+    </div>
+
+</form>
+<form method="post" action="{{ url_for('date-picker') }}">
+    {{ form.hidden_tag }}
+    {{ form.dt(class="dtpick") }}
+    <button type="submit">Go</button>
+</form>
+</body>

@@ -1,0 +1,23 @@
+
+.first-upload-btn{
+
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.second-time-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 10%;
+    margin: 10px
+   }
+
+.heading{
+    margin: 15px 10px;
+    font-size: xx-large;
+    font-weight: bolder;
+}
