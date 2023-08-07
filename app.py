@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask           # import flask
+from flask import Flask, render_template  # import flask
 
 from activity_range import activity_range_bp
 from time_selection import time_selection_bp
@@ -21,6 +21,10 @@ app.register_blueprint(home_bp)
 app.register_blueprint(time_selection_bp)
 app.register_blueprint(activity_range_bp)
 # ... (other configurations and route definitions if any)
+
+@app.route('/')
+def homepage():
+    return render_template('home.html',file_created = True)
 
 if __name__ == '__main__':
     app.run(debug=True)

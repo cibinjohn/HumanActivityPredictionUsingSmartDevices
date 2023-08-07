@@ -13,6 +13,7 @@ headers = {
         'Content-Type': 'application/json'
     }
 
+
 @activity_range_bp.route('/timerange', methods=['GET'])
 def index():
     return render_template('activity_range.html',selected_from_datetime = None, selected_to_datetime = None,activities = None)
@@ -59,11 +60,17 @@ def datetime_picker():
     # Convert JSON string to a Python dictionary
     data_dict = json.loads(response.text)
 
-    print(data_dict)
-    print(data_dict['activities_and_recommendations'][0]['activity'])
+    print(data_dict,data_dict['code'])
+    code = data_dict['code']
+    if code == 200:
+        print(data_dict['activities_and_recommendations'][0]['activity'])
+        activities = data_dict['activities_and_recommendations']
+    else:
+        activities = ""
+
     print(type(data_dict))  #
     return render_template('activity_range.html',selected_from_datetime = selected_from_datetime, selected_to_datetime = selected_to_datetime,
-                           activities = data_dict['activities_and_recommendations'])
+                           activities = activities)
 
 # , date=selected_date, time=selected_time, milliseconds=selected_milliseconds, to_date=selected_to_date,
 # to_time=selected_to_time, to_milliseconds=selected_to_milliseconds

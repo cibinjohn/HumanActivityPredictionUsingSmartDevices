@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @home_bp.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html',file_created = None)
 
 
 # save the file location in uploads folder
@@ -64,7 +64,9 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         NEW_FILE = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         print("the file created", NEW_FILE)
-        flash('File successfully uploaded')
+        flash('File successfully uploaded!!! Now how do u want to see the result?','success')
+        file_created = True
+
         print("file uploaded")
         # Driver Code
 
@@ -79,12 +81,10 @@ def upload():
         print("the new file path with json extension", jsonFilePath)
         # Call the make_json function
         make_json(csvFilePath, jsonFilePath)
-        flash('File uploaded successfully.')
-        return redirect(request.url)
-        # return render_template('time_selection.html')
-        # return 'File uploaded successfully.'
         # return redirect(request.url)
-    # return 'No file selected.'
+        return render_template('home.html', file_created=file_created)
+
+
 
 
 # Function to convert a CSV to JSON

@@ -5,15 +5,17 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
+        body{
+            font-family: sans-serif;
+        }
         table {
             border-collapse: collapse;
             width: 80%;
             margin: auto;
         }
-
-        th, td {
+          th, td {
             border: 1px solid black;
-            padding: 8%;
+            padding: 2%;
             text-align: left;
         }
 
@@ -23,8 +25,10 @@
     </style>
 </head>
 <body>
+
     <div class="container mt-5">
-        <h1>Choose the Time Range </h1>
+        <a href="{{ url_for('homepage') }}" style="padding-bottom:5%">Back to Home</a>
+        <h1>Activity Tracker - Choose the Time Range </h1>
         <br>
         <br>
         <br>
@@ -81,17 +85,17 @@
                 <td>{{ activity["date_time"] }}</td>
                 <td style="text-align: center;">
                     <p style="font-weight: bold;">{{ activity["activity"] }}</p>
-                    <img src="{{ url_for('static', filename='/assets/reco/'+activity['activity']+'.jpg') }}" alt="Image" width="200" height="150"></td>
+                    <img src="{{ url_for('static', filename='/assets/activity/'+activity['activity']+'.jpg') }}" alt="Image" width="200" height="150"></td>
                 <td>
                 <p style="font-weight: bold;">{{ activity["recommendation"] }}</p>
-                    <img src="{{ url_for('static', filename='/assets/ad/'+activity['recommendation']+'.jpg') }}" alt="Image" width="200" height="150"></td>
+                    <img src="{{ url_for('static', filename='/assets/activity_recommendation/'+activity['recommendation']+'.jpg') }}" alt="Image" width="200" height="150"></td>
                 </td>
             </tr>
             {% endfor %}
         </table>
 
         {% else %}
-            <p>No activities found for the selected date and time.</p>
+            <p style="color: red;font-weight: bold">No records available in the provided time interval!!!</p>
         {% endif %}
         </div>
 

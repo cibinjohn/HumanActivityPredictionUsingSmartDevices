@@ -52,10 +52,15 @@ def datetime():
     print("in",response.text, type(response.text) )
     # Convert JSON string to a Python dictionary
     data_dict = json.loads(response.text)
-
+    code = data_dict['code']
+    if code == 200:
+        print(data_dict)
+        activities = data_dict
+    else:
+        activities = ""
     print(data_dict)
     print(type(data_dict))  #
-    return render_template('time_selection.html', activities=data_dict, selected_datetime=selected_datetime)
+    return render_template('time_selection.html', activities=activities, selected_datetime=selected_datetime)
 
 
 

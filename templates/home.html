@@ -4,13 +4,27 @@
     <title>Upload and DateTime</title>
 
     <style>
+        body{
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        .form-body{
+            text-align: center;
+            margin: 0 5% 5%;
+            border: 2px solid;
+            padding: 2%;
+        }
+        .form-title{
+            text-align: center;
+            margin-bottom: 5%;
+        }
         .button-container {
             display: flex;
             justify-content: center;
         }
         .styled-div {
             border: 1px solid #ccc;
-            padding: 10%;
+            padding: 3%;
             margin: 10px;
             text-align: center;
         }
@@ -53,11 +67,21 @@
     </style>
 </head>
 <body>
-    <h1>Upload File</h1>
-    <form method="POST" action="/" enctype="multipart/form-data">
+    <h1 class="form-title">Activity Tracker</h1>
+
+    <form class="form-body" method="POST" action="/" enctype="multipart/form-data">
+        <h3 style="text-align: center"> Start by uploading your file (*Only accepted .csv files)</h3>
         <input type="file" name="file" accept=".csv" required><br><br>
         <input type="submit" value="Upload" class="inline-style-button-blue">
     </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <h3 style="color:green;font-weight:bold">{{ messages[0] }}</h3>
+        {% endif %}
+    {% endwith %}
+    {% if file_created %}
+
     <div class="button-container">
         <div class="styled-div">
             <label class="label-style"> Select the Timestamp</label>
@@ -73,5 +97,6 @@
         </div>
     </div>
 
+    {% endif %}
 </body>
 </html>
