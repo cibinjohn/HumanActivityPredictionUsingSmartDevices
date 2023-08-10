@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and DateTime</title>
+
+    <style>
+        body{
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        .form-body{
+            text-align: center;
+            margin: 0 5% 5%;
+            border: 2px solid;
+            padding: 2%;
+        }
+        .form-title{
+            text-align: center;
+            margin-bottom: 5%;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+        .styled-div {
+            border: 1px solid #ccc;
+            padding: 3%;
+            margin: 10px;
+            text-align: center;
+        }
+        /* Style using inline CSS */
+        .inline-style-button {
+            background-color: #4CAF50;
+            border: 1px;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10%;
+        }
+        .inline-style-button-blue {
+            padding: 10px 20px;
+            background-color: blue;
+            border: 1px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        /* Style using a CSS class */
+        .css-class-button {
+            /* Add your CSS styling here */
+        }
+
+        .label-style{
+            font-size: 24px;
+            /* margin-top: 40px; */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="form-title">Activity Tracker</h1>
+
+    <form class="form-body" method="POST" action="/" enctype="multipart/form-data">
+        <h3 style="text-align: center"> Start by uploading your file (*Only accepted .csv files)</h3>
+        <input type="file" name="file" accept=".csv" required><br><br>
+        <input type="submit" value="Upload" class="inline-style-button-blue">
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <h3 style="color:green;font-weight:bold">{{ messages[0] }}</h3>
+        {% endif %}
+    {% endwith %}
+    {% if file_created %}
+
+    <div class="button-container">
+        <div class="styled-div">
+            <label class="label-style"> Select the Timestamp</label>
+            <form method="POST" action="/timestamp" >
+                <input type="submit" value="Time Stamp" class="inline-style-button">
+            </form>
+        </div>
+        <div class="styled-div">
+            <label class="label-style"> Select the Time range</label>
+            <form method="POST" action="/timerange" >
+                <input type="submit" value="Select Time Range" class="inline-style-button">
+            </form>
+        </div>
+    </div>
+
+    {% endif %}
+</body>
+</html>
