@@ -16,7 +16,16 @@
         }
         .form-title{
             text-align: center;
-            margin-bottom: 5%;
+            margin-bottom: 2%;
+        }
+         .logo-image{
+            text-align: center;
+            margin: 0% 46% 2%;
+            width: auto;
+            border-radius: 25px;
+            border-style: dashed;
+            width: 100px;
+            height: 100px;
         }
         .button-container {
             display: flex;
@@ -68,6 +77,7 @@
 </head>
 <body>
     <h1 class="form-title">Activity Tracker</h1>
+    <img class="logo-image" src="{{ url_for('static', filename='/assets/logo.jpeg') }}" alt="Image">
 
     <form class="form-body" method="POST" action="/" enctype="multipart/form-data">
         <h3 style="text-align: center"> Start by uploading your file (*Only accepted .csv files)</h3>
