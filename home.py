@@ -32,7 +32,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
     os.mkdir(UPLOAD_FOLDER)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'csv', 'xlsx'])
+ALLOWED_EXTENSIONS = set([ 'csv', 'xlsx'])
 
 
 def allowed_file(filename):
@@ -64,7 +64,7 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         NEW_FILE = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         print("the file created", NEW_FILE)
-        flash('File successfully uploaded!!! Now how do u want to see the result?','success')
+        flash('File successfully uploaded!!! Please select any of the options below to see your result','success')
         file_created = True
 
         print("file uploaded")
