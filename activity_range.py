@@ -64,6 +64,15 @@ def datetime_picker():
     code = data_dict['code']
     if code == 200:
         print(data_dict['activities_and_recommendations'][0]['activity'])
+        with open('mapping.json', 'r') as mapping:
+            reco_mapping = json.load(mapping)
+        print("reco_mapping", reco_mapping)
+        print("data_dict", data_dict['activities_and_recommendations'])
+        for data in data_dict['activities_and_recommendations']:
+            print("data", data)
+            if data['recommendation'] in reco_mapping:
+                data['recommendation_title'] = reco_mapping[data['recommendation']]
+        print("after appending", data_dict)
         activities = data_dict['activities_and_recommendations']
     else:
         activities = ""

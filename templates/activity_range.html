@@ -84,10 +84,10 @@
             <tr>
                 <td>{{ activity["date_time"] }}</td>
                 <td style="text-align: center;">
-                    <p style="font-weight: bold;">{{ activity["activity"] }}</p>
+                    <p style="font-weight: bold;;color:green">{{ activity["activity"] }}</p>
                     <img src="{{ url_for('static', filename='/assets/activity/'+activity['activity']+'.jpg') }}" alt="Image" width="200" height="150"></td>
                 <td>
-                <p style="font-weight: bold;">{{ activity["recommendation"] }}</p>
+                <p style="font-weight: bold;;color:green">{{ activity["recommendation_title"] }}</p>
                     <img src="{{ url_for('static', filename='/assets/activity_recommendation/'+activity['recommendation']+'.jpg') }}" alt="Image" width="200" height="150"></td>
                 </td>
             </tr>

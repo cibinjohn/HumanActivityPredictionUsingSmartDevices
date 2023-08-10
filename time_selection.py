@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect, flash,Blueprint, session
+from flask import Flask, render_template, request, redirect, flash, Blueprint, session, jsonify
 import requests
 import json
-
+# import MAPPING from mapping.json
 
 time_selection_bp = Blueprint('time_selection', __name__)
 
@@ -52,6 +52,16 @@ def datetime():
     print("in",response.text, type(response.text) )
     # Convert JSON string to a Python dictionary
     data_dict = json.loads(response.text)
+    with open('mapping.json','r') as mapping:
+        reco_mapping = json.load(mapping)
+    print("reco_mapping", reco_mapping)
+    print("data_dict",data_dict)
+    # for data in data_dict:
+    # print("data", data)
+    if data_dict['recommendation'] in reco_mapping:
+        data_dict['recommendation_title'] = reco_mapping[data_dict['recommendation']]
+    print("after appending",data_dict)
+
     code = data_dict['code']
     if code == 200:
         print(data_dict)
