@@ -56,18 +56,17 @@ def datetime():
         reco_mapping = json.load(mapping)
     print("reco_mapping", reco_mapping)
     print("data_dict",data_dict)
-    # for data in data_dict:
-    # print("data", data)
-    if data_dict['recommendation'] in reco_mapping:
-        data_dict['recommendation_title'] = reco_mapping[data_dict['recommendation']]
-    print("after appending",data_dict)
-
     code = data_dict['code']
     if code == 200:
-        print(data_dict)
+        # add new variable to save image related to the recommendation
+        if data_dict['recommendation'] in reco_mapping:
+            data_dict['recommendation_title'] = reco_mapping[data_dict['recommendation']]
+        print("after appending",data_dict)
         activities = data_dict
     else:
+        print("not success")
         activities = ""
+        message = data_dict['message']
     print(data_dict)
     print(type(data_dict))  #
     return render_template('time_selection.html', activities=activities, selected_datetime=selected_datetime)
