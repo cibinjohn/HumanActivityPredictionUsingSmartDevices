@@ -51,40 +51,47 @@ def timerange():
 
 @home_bp.route('/', methods=['POST'])
 def upload():
-    # check if the post request has the file part
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
+    print("beginning",request.files['file'])
     file = request.files['file']
-    if file.filename == '':
-        flash('No file selected for uploading')
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        NEW_FILE = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print("the file created", NEW_FILE)
-        flash('File successfully uploaded!!! Please select any of the options below to see the result.','success')
-        file_created = True
+    print("file details",allowed_file(file.filename))
+    if allowed_file(file.filename):
+    # check if the post request has the file part
 
-        print("file uploaded")
-        # Driver Code
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No file selected for uploading')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            NEW_FILE = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            print("the file created", NEW_FILE)
+            flash('File successfully uploaded!!! Please select any of the options below to see the result.','success')
+            file_created = True
 
-        # Decide the two file paths according to your
-        # computer system
-        print("upload folder", UPLOAD_FOLDER, "filename", filename)
-        file_extension = filename.rsplit('.')
-        print("the result", file_extension)
-        csvFilePath = NEW_FILE
-        # UPLOAD_FOLDER + "\'" + rem_extension[0] + '.json'
-        jsonFilePath = os.path.join(app.config['UPLOAD_FOLDER'], file_extension[0] + '.json')
-        print("the new file path with json extension", jsonFilePath)
-        # Call the make_json function
-        make_json(csvFilePath, jsonFilePath)
-        # return redirect(request.url)
+            print("file uploaded")
+            # Driver Code
+
+            # Decide the two file paths according to your
+            # computer system
+            print("upload folder", UPLOAD_FOLDER, "filename", filename)
+            file_extension = filename.rsplit('.')
+            print("the result", file_extension)
+            csvFilePath = NEW_FILE
+            # UPLOAD_FOLDER + "\'" + rem_extension[0] + '.json'
+            jsonFilePath = os.path.join(app.config['UPLOAD_FOLDER'], file_extension[0] + '.json')
+            print("the new file path with json extension", jsonFilePath)
+            # Call the make_json function
+            make_json(csvFilePath, jsonFilePath)
+            # return redirect(request.url)
+            return render_template('home.html', file_created=file_created)
+    else:
+        flash('File uploaded is not of the expected type. Please check and try again.', 'error')
+        file_created = False
         return render_template('home.html', file_created=file_created)
-
-
 
 
 # Function to convert a CSV to JSON
