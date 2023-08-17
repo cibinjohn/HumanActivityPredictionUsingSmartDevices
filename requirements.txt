@@ -3,3 +3,11 @@ Flask~=2.3.2
 werkzeug~=2.3.6
 requests~=2.31.0
 WTForms~=3.0.1
+pandas
+Flask==2.3.2
+Flask-RESTful==0.3.10
+scikit-learn==1.2.1
+sqlalchemy==2.0.8
+pymysql==1.0.3
+cryptography
+requests

@@ -5,6 +5,8 @@ from datetime import datetime
 import csv
 import json
 import requests
+from src.env.environment_variables import APPCONFIG
+
 
 home_bp = Blueprint('home', __name__)
 
@@ -120,7 +122,10 @@ def make_json(csvFilePath, jsonFilePath):
         jsonf.write(json.dumps(data, indent=4))
 
     print("CSV file converted to JSON and sent to DB", data)
-    url = "http://localhost:7000/predict_activity"
+    # url = "http://localhost:7000/predict_activity"
+    url = "http://{}:{}/predict_activity".format(APPCONFIG.hapd_api_host,
+                                                          APPCONFIG.hapd_api_port)
+
 
     payload = json.dumps(data, indent=4)
     headers = {

@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, flash, Blueprint, s
 import requests
 import json
 # import MAPPING from mapping.json
+from src.env.environment_variables import APPCONFIG
+
 
 time_selection_bp = Blueprint('time_selection', __name__)
 
@@ -37,7 +39,9 @@ def datetime():
     selected_datetime = selected_date+" "+selected_time+":"+selected_milliseconds
     print("now trying to hit api\n")
 
-    url = "http://localhost:7000/get_activity_timestamp"
+    # url = "http://localhost:7000/get_activity_timestamp"
+    url = "http://{}:{}/get_activity_timestamp".format(APPCONFIG.hapd_api_host,
+                                                          APPCONFIG.hapd_api_port)
 
     payload = json.dumps({
         "transaction_id": session.get('transaction_id'),

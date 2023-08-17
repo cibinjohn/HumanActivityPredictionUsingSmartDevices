@@ -4,6 +4,8 @@ from flask import Flask, render_template  # import flask
 from activity_range import activity_range_bp
 from time_selection import time_selection_bp
 from home import home_bp
+from src.env.environment_variables import APPCONFIG
+
 
 app = Flask(__name__)             # create an app instance
 #
@@ -27,4 +29,4 @@ def homepage():
     return render_template('home.html',file_created = True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=APPCONFIG.port, host=APPCONFIG.host)

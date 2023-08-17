@@ -3,6 +3,8 @@ import json
 import requests
 from flask import Flask, render_template, request, Blueprint, session
 from datetime import datetime
+from src.env.environment_variables import APPCONFIG
+
 
 activity_range_bp = Blueprint('activity_range', __name__)
 
@@ -43,7 +45,11 @@ def datetime_picker():
     selected_to_datetime = selected_to_date + " " + selected_to_time + ":" + selected_to_milliseconds
     print("now trying to hit api\n")
 
-    url = "http://localhost:7000/get_activity_timeinterval"
+    # url = "http://localhost:7000/get_activity_timeinterval"
+    url = "http://{}:{}/get_activity_timeinterval".format(APPCONFIG.hapd_api_host,
+                                                          APPCONFIG.hapd_api_port)
+
+
 
     payload = json.dumps({
         "transaction_id": session.get('transaction_id'),
