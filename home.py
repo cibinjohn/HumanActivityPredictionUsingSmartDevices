@@ -64,7 +64,7 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         NEW_FILE = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         print("the file created", NEW_FILE)
-        flash('File successfully uploaded!!! Please select any of the options below to see your result','success')
+        flash('File successfully uploaded!!! Please select any of the options below to see the result.','success')
         file_created = True
 
         print("file uploaded")
