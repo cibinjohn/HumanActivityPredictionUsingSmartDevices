@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.dialects.mysql import INTEGER
 
 
-from src.db.session_maker import Base
+from db.session_maker import Base
 
 metadata = Base.metadata
 

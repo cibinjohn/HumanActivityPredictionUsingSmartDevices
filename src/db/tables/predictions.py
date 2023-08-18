@@ -2,7 +2,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, JSON, VARCHAR, DECIMAL, FLOAT, DATETIME
 from sqlalchemy.sql import func
 
-from src.db.session_maker import Base
+from db.session_maker import Base
 
 metadata = Base.metadata
 

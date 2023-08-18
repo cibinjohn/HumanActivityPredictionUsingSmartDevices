@@ -14,7 +14,6 @@ class HumanActivityPredictor(PreProcesser):
     def __init__(self):
         super().__init__()
         self.load_model()
-        self.load_normalizer()
         self.label_dict = LABEL_DICT
         self.label_reverse_dict = {value: key for key, value in self.label_dict.items()}
         self.features = FEATURES
@@ -35,12 +34,18 @@ class HumanActivityPredictor(PreProcesser):
                                        status=0)
         try:
 
-            timestamp_df = input_df[['timestamp']]
-            features_df = input_df[self.features]
+            if 'DATE' in input_df.columns:
+                input_df.rename(columns={'DATE': 'timestamp'}, inplace=True)
+
+            cj_logger.info('input_df columns %s',str(input_df.columns))
+            # timestamp_df = input_df[['timestamp']]
+            # features_df = input_df[self.features]
 
             # preprocessing
-            X_test_normalized = self.preprocess(features_df)
+            X_test_normalized, timestamp_df = self.preprocess(input_df)
+            timestamp_df.timestamp = timestamp_df.timestamp.map(lambda x:str(x))
 
+            cj_logger.info("X_test_normalized shape : %s",X_test_normalized.shape)
             # prediction
             prediction = self.model.predict(X_test_normalized)
             timestamp_df["prediction"] = pd.Series([self.label_reverse_dict[item] for item in prediction])
@@ -58,7 +63,7 @@ class HumanActivityPredictor(PreProcesser):
                                          })
             records_df['TRANSACTION_ID'] = transaction_id
             records_df['CREATED_AT'] = str(datetime.datetime.now())
-
+            records_df.to_csv('predictions_latest.csv',index=None)
 
             self.add_predictions_to_db(predictions_df=records_df)
             cj_logger.info("Predictions updated")
@@ -71,8 +76,6 @@ class HumanActivityPredictor(PreProcesser):
             cj_logger.error(err)
             self.update_transaction_status(transaction_id=transaction_id,
                                            status=2)
-
-
 
 
         return [value for key, value in timestamp_df.transpose().to_dict().items()], transaction_id

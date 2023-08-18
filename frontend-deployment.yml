@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: kub_frontend:v7.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 7004
+          env:
+            - name: HAPD_API_HOST
+              value: flask-service
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  ports:
+  - port: 7004
+    name: frontend-service
+    protocol: TCP
+    targetPort: 7004
+  selector:
+    app: frontend
+  type: LoadBalancer

@@ -5,3 +5,4 @@ scikit-learn==1.2.1
 sqlalchemy==2.0.8
 pymysql==1.0.3
 cryptography
+requests

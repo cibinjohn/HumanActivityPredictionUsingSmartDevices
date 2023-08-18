@@ -5,12 +5,28 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+from env.environment_variables import APPCONFIG
+
+
+
 # Mariadb
-DB_USER = os.environ.get("SQL_USER","root")
-DB_PASS = os.environ.get("SQL_PASS","password")
-DB_HOST = os.environ.get("SQL_HOST","localhost")
-DB_NAME = os.environ.get("SQL_DB_NAME","HumanActivityPredictionsDB")
-DB_PORT = os.environ.get("SQL_PORT", "3310")
+# DB_USER = os.environ.get("SQL_USER","root")
+# DB_PASS = os.environ.get("SQL_PASS","password")
+# DB_HOST = os.environ.get("SQL_HOST","localhost")
+# DB_NAME = os.environ.get("SQL_DB_NAME","HumanActivityPredictionsDB")
+# DB_PORT = os.environ.get("SQL_PORT", "3306")
+# DB_TYPE = os.environ.get("SQL_DB_TYPE", "mysql")
+# DB_DRIVER = os.environ.get("SQL_DB_DRIVER", "pymysql")
+# POOL_SIZE = os.environ.get("SQL_DB_POOL_SIZE", 100)
+# MAX_OVERFLOW = os.environ.get("SQL_DB_MAX_OVERFLOW", 50)
+# POOL_TIMEOUT = os.environ.get("SQL_DB_POOL_TIMEOUT", 300)
+
+# Mariadb
+DB_USER = APPCONFIG.mysql_database_user
+DB_PASS = APPCONFIG.mysql_database_password
+DB_HOST = APPCONFIG.mysql_database_host
+DB_NAME = APPCONFIG.mysql_database_db
+DB_PORT = APPCONFIG.mysql_database_port
 DB_TYPE = os.environ.get("SQL_DB_TYPE", "mysql")
 DB_DRIVER = os.environ.get("SQL_DB_DRIVER", "pymysql")
 POOL_SIZE = os.environ.get("SQL_DB_POOL_SIZE", 100)
@@ -30,11 +46,12 @@ def check_database_in_server(db_name):
 
 try:
     db_url = f"{DB_TYPE}+{DB_DRIVER}://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}"
+    db_url = db_url.encode('utf-8').decode('latin-1')  # Encode to 'latin-1'
     db_engine = create_engine(db_url)
     check_database_in_server(db_name=DB_NAME)
     engine = create_engine(f"{db_url}/{DB_NAME}", pool_size=POOL_SIZE, max_overflow=MAX_OVERFLOW,
                            pool_recycle=180,
-                           #convert_unicode=True,
+                           # convert_unicode=True,
                            echo=False, echo_pool=True,
                            pool_timeout=POOL_TIMEOUT)
 

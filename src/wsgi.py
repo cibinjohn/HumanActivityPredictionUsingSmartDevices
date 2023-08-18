@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import pandas as pd
+import requests
 from flask import Flask, request
 from flask_restful import Api, Resource
 
@@ -25,6 +26,26 @@ class Predictor(Resource):
 
 
 api.add_resource(Predictor, '/predict_activity')
+
+
+# class DataBaseConnector(Resource):
+#
+#     def get(self):
+#         response = "Hello, World! "
+#
+#         try:
+#             local_api_response = requests.get(APPCONFIG.local_api_url)
+#             if local_api_response.status_code == 200:
+#                 response += local_api_response.text
+#             else:
+#                 response += "Error calling the local API"
+#         except requests.exceptions.RequestException as e:
+#             response += "Error calling the local API: " + str(e)
+#
+#             return response
+#
+# api.add_resource(DataBaseConnector, '/database')
+
 
 
 class ActivityExtractorTimestamp(Resource):
@@ -59,7 +80,7 @@ class ActivityExtractorTimeInterval(Resource):
 
 api.add_resource(ActivityExtractorTimeInterval, '/get_activity_timeinterval')
 print(" APPCONFIG.host : ",APPCONFIG.host)
-
+#
 if __name__ == "__main__":
 
     app.run(debug=True, port=APPCONFIG.port, host=APPCONFIG.host)

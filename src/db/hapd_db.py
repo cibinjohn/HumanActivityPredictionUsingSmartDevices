@@ -7,12 +7,12 @@ import uuid
 import pandas as pd
 from sqlalchemy import insert, func, text
 
-from src.db.error_responses import PREDICTION_IN_PROGRESS_ERROR, PIPELINE_FAILURE_ERROR, UNKNOWN_ERROR, \
+from db.error_responses import PREDICTION_IN_PROGRESS_ERROR, PIPELINE_FAILURE_ERROR, UNKNOWN_ERROR, \
     NO_RECORDS_ERROR_TIMESTAMP, NO_RECORDS_ERROR_TIMEINTERVAL
-from src.db.session_maker import DbSessionMaker
-from src.db.tables.predictions import Predictions
-from src.db.tables.transactions import Transactions
-from src.model.constants import STATUS_MESSAGE_DICT
+from db.session_maker import DbSessionMaker
+from db.tables.predictions import Predictions
+from db.tables.transactions import Transactions
+from model.constants import STATUS_MESSAGE_DICT
 
 
 class TransactionOperations():
@@ -214,16 +214,16 @@ if __name__ == "__main__":
     trasactions_obj = TransactionOperations()
     predictions_obj = PredictionOperations()
     # #
-    # trasactions_obj.delete_all_transactions()
-    # predictions_obj.delete_all_predictions()
+    trasactions_obj.delete_all_transactions()
+    predictions_obj.delete_all_predictions()
     #
     # print(trasactions_obj.create_transaction())
     #
     transactions_df = trasactions_obj.get_all_transactions()
     print(transactions_df)
     #
-    # # print(obj.create_transaction())
-    # # obj.delete_all_transactions()
+    # print(obj.create_transaction())
+    # obj.delete_all_transactions()
     predictions_df = predictions_obj.get_all_predictions()
     print(predictions_df)
     #
