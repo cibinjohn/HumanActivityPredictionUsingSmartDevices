@@ -10,6 +10,7 @@ COPY static /app/static
 COPY templates /app/templates
 COPY uploads /app/uploads
 COPY *.py /app/
+COPY *.json /app/
 COPY test.py /app/
 
 EXPOSE 7004
