@@ -1,2 +1,8 @@
-pandas~=1.5.3
-Flask~=2.3.2
+pandas
+Flask==2.3.2
+Flask-RESTful==0.3.10
+scikit-learn==1.2.1
+sqlalchemy==2.0.8
+pymysql==1.0.3
+cryptography
+requests

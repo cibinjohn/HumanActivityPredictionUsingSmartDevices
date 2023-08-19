@@ -1,6 +1,12 @@
-FEATURES = ['AUDIO_X', 'AUDIO_Z', 'pressure', 'MAG_Z', 'MAG_X', 'MAG_Y',
-            'GRAVITY_X', 'ACC_X', 'ROTATION_VECTOR_A', 'ROTATION_VECTOR_C', 'ORI_X',
-            'ROTATION_VECTOR_D', 'GRAVITY_Y', 'AUDIO_W', 'GRAVITY_Z']
+FEATURES = ['Phone_pressure', 'Phone_ACC_X', 'Phone_ACC_Y', 'Phone_ACC_Z',
+       'Phone_GRAVITY_X', 'Phone_GRAVITY_Y', 'Phone_GRAVITY_Z', 'Phone_GYRO_X',
+       'Phone_GYRO_Y', 'Phone_GYRO_Z', 'Phone_LA_X', 'Phone_LA_Y',
+       'Phone_LA_Z', 'Phone_MAG_X', 'Phone_MAG_Y', 'Phone_MAG_Z',
+       'Phone_ORI_X', 'Phone_ORI_Y', 'Phone_ORI_Z', 'Phone_AUDIO_W',
+       'Phone_AUDIO_X', 'Phone_AUDIO_Y', 'Phone_AUDIO_Z',
+       'Phone_ROTATION_VECTOR_A', 'Phone_ROTATION_VECTOR_B',
+       'Phone_ROTATION_VECTOR_C', 'Phone_ROTATION_VECTOR_D',
+       'Phone_ROTATION_VECTOR_E']
 
 LABEL_DICT = {'Walk': 0,
               'At home': 1,
@@ -31,3 +37,7 @@ LABEL_DICT = {'Walk': 0,
               'Video games': 26,
               'Shopping& wearing': 27,
               'Eat/In computer': 28}
+
+STATUS_MESSAGE_DICT = {0:"In progress",
+                       1:"Completed",
+                       2:"Failed"}
