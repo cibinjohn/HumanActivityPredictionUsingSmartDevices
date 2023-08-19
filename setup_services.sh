@@ -1,4 +1,4 @@
 #!/bin/bash
-minikube service flask-service dummy-service frontend-service
+minikube service flask-service  frontend-service
 # frontend-service
 # dummy-service 
