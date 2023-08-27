@@ -6,10 +6,34 @@ TODO: API to predict human activity from smart devices
 # Environment Variables:
 
 1. MODEL_PATH
-2. NORMALIZATION_FILE_PATH
-3. PORT
-4. HOST
-5. LOGFILE
+2. PORT
+3. HOST
+4. LOGFILE
+
+# Setting up kubernetes cluster using Minikube.
+
+1. Install minikube with docker in local
+2. To start minikube in the local, open linux terminal and run the following command.
+   ```
+   minikube start
+   ```
+3. To open the minikube dashboard, run the following command in the terminal.
+   ```
+   minikube dashboard
+   ```
+  You can monitor the status of the deployments, pods, and services here.  It also provides you the option to check the logs of the pods, and enter their consoles
+4.  Deploy the pods.  Run the following command in the terminal to set up the services.
+  ```
+  ./setup_kubernetes.sh
+  ```
+5. The above command will initiate the deployment process, and monitor the stauts of the pods.  Once the pods are in running condition, run the following command in the terminal to set up the services.  This will auto direct you to the application. 
+    ```
+    ./setup_services.sh
+    ```
+6. To remove all the services, pods, deployments, secrets and config, run the following command in the terminal.
+    ```
+    ./reset_kubernetes.sh
+    ```
 
 # Sample request(PUT)
 
