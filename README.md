@@ -22,7 +22,8 @@ TODO: API to predict human activity from smart devices
       minikube dashboard
       ```
   You can monitor the status of the deployments, pods, and services here.  It also provides you the option to check the logs of the pods, and enter their consoles
-4.  Deploy the pods.  Run the following command in the terminal to set up the services.
+  
+4. Deploy the pods.  Run the following command in the terminal to set up the services.
 ```
 ./setup_kubernetes.sh
 ```
