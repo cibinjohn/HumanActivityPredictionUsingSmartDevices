@@ -25,7 +25,7 @@ TODO: API to predict human activity from smart devices
   
 4. Deploy the pods.  Run the following command in the terminal to set up the services.
 ```
-./setup_kubernetes.sh
+      ./setup_kubernetes.sh
 ```
 5. The above command will initiate the deployment process, and monitor the stauts of the pods.  Once the pods are in running condition, run the following command in the terminal to set up the services.  This will auto direct you to the application. 
     ```
